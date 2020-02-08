@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Linq;
+using System.Collections.Generic;
 
 namespace Assignment1_Spring2020
 {
@@ -18,12 +20,13 @@ namespace Assignment1_Spring2020
 
             int n3 = 110;
             int k = 11;
-            UsfNumbers(n3, k);
+           // UsfNumbers(n3, k);
 
-            string[] words = new string[] { "abcd", "dcba", "lls", "s", "sssll" };
-           // PalindromePairs(words);
+            string[] words = new string[] {"abcd", "dcba", "lls", "s", "sssll"};
+            PalindromePairs(words);
 
-
+            int n4 = 5;
+            Stones(n4);
         }
 
 
@@ -32,10 +35,10 @@ namespace Assignment1_Spring2020
             try
             {
                  
-                //checking for n,because n cannot be less than or equal to 0.               
-                // base case 
+                //checking for n,because n cannot be less than or equal to 0.                
                     if (n == 0)
                         return;
+                    //calling Printn method.
                     Printn(n);
                     Console.WriteLine();
 
@@ -116,7 +119,32 @@ namespace Assignment1_Spring2020
         {
             try
             {
-                
+               
+                for(int i = 1; i<=n3; i++)
+                {
+                    //Here we are checking for the 3 and 5 condition first so that it will not print for i%3==0 or i%5==0
+                    if (i % 3 == 0 && i % 5 == 0)
+                        Console.Write("US ");
+                    //Here we are checking for the 5 and 7 condition first so that it will not print for i%5==0 or i%7==0
+                    else if (i % 5 == 0 && i % 7 == 0)
+                        Console.Write("SF ");
+                    //checking for multiples of 3
+                    else if (i % 3 == 0)
+                        Console.Write("U ");
+                    //checking for multiples of 5
+                    else if (i % 5 == 0)
+                        Console.Write("S ");
+                    //checking for multiples of 7
+                    else if (i % 7 == 0)
+                        Console.Write("F ");
+                    //printing the number itself if it not a multiple of any of the above.
+                    else
+                        Console.Write(i+" ");
+
+                    //Starting a new line after k elements.
+                    if(i%k==0)
+                        Console.WriteLine();
+                }
             }
             catch(Exception e)
             {
@@ -130,7 +158,56 @@ namespace Assignment1_Spring2020
         {
             try
             {
-                
+                //initiating an empty list of type integer array to store the index values of palindrome strings.
+                List<int[]> result = new List<int[]>();
+                //initiating an empty string to print the result in required format. 
+                string s = "";
+                //used nested for loop to try all the possible combinations in the input string array.
+                for (int i = 0; i < words.Length; i++)
+                {
+                    for (int j = 0; j < words.Length; j++)
+                    {
+                        //checking for i!=j so to remove combinations of same array.
+                        if(i!=j)
+                        {
+                            //forming a temporary string for each combination
+                            string temp = words[i] + words[j];
+                            //flag variable to check for palindrome
+                            int pal = 1;
+                            //checking for palindrome condition.
+                            for (int k = 0;  k < temp.Length/2; k++)
+                            {
+                                if (temp[k] != temp[temp.Length - k - 1])
+                                {
+                                    //making flag variable 0 if the string is not a palindrom and breaking from the loop.
+                                    pal = 0;
+                                    break;
+                                }
+                                
+                            }
+                            //if value of flag is 1, then the temp string is a palindrom, as it did not become 0.
+                            if (pal == 1)
+                            {
+                                //storing the values of i and j in a list of type of int array.
+                                int[] temparray = {i,j};
+                                result.Add(temparray);
+                                //adding value of i and j to the string 
+                                s = s + "[" + i + "," + j + "]" + ",";
+                            }
+                        }
+
+
+                    }
+                }
+                //printing the output in the required format.
+                Console.Write("[");
+                // removing the comma at the end of the string.
+                for (int l = 0; l < s.Length-1; l++)
+                {
+                    Console.Write(s[l]);
+                }
+                Console.Write("]");
+                     
             }
             catch (Exception e)
             {
@@ -142,7 +219,16 @@ namespace Assignment1_Spring2020
         {
             try
             {
-               
+                if (n4 >= 4)
+                {
+                    if (n4 % 4 == 0)
+                        Console.WriteLine("false");
+                    else 
+                    { 
+
+                    }
+                }
+
             }
             catch (Exception e)
             {
