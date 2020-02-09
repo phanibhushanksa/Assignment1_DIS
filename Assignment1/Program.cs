@@ -23,9 +23,9 @@ namespace Assignment1_Spring2020
            // UsfNumbers(n3, k);
 
             string[] words = new string[] {"abcd", "dcba", "lls", "s", "sssll"};
-            PalindromePairs(words);
+            //PalindromePairs(words);
 
-            int n4 = 5;
+            int n4 = 31;
             Stones(n4);
         }
 
@@ -221,12 +221,23 @@ namespace Assignment1_Spring2020
             {
                 if (n4 >= 4)
                 {
+                    string stonesResult = "[";
                     if (n4 % 4 == 0)
-                        Console.WriteLine("false");
+                        Console.WriteLine("false"); 
                     else 
-                    { 
-
+                    {
+                            stonesResult = stonesResult + n4 % 4;
+                        for (int i = 0; i < n4/4; i++)
+                        {
+                            stonesResult = stonesResult+ " 1 3";
+                        }
+                        stonesResult = stonesResult + "]";
+                            Console.WriteLine(stonesResult);
                     }
+                }
+                else
+                {
+                    Console.WriteLine("Number of stones should be greater than or equal to 4");
                 }
 
             }
