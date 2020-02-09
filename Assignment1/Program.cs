@@ -36,7 +36,7 @@ namespace Assignment1_Spring2020
 
             Console.WriteLine("\n");
             Console.WriteLine("Solution 6");
-            int n4 = 5;
+            int n4 = 14;
             Stones(n4);
         }
 
@@ -154,6 +154,8 @@ namespace Assignment1_Spring2020
                         //Here we are checking for the 5 and 7 condition first so that it will not print for i%5==0 or i%7==0
                         else if (i % 5 == 0 && i % 7 == 0)
                             Console.Write("SF ");
+                        else if (i % 3 == 0 && i % 7 == 0)
+                            Console.Write("UF ");
                         //checking for multiples of 3
                         else if (i % 3 == 0)
                             Console.Write("U ");
